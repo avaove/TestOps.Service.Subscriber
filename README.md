@@ -1,20 +1,11 @@
-# Introduction 
-TODO: Give a short introduction of your project. Let this section explain the objectives or the motivation behind this project. 
+As part of my internship at [Ceridian](https://www.ceridian.com/) in the Test Platform Services team, I built this service and hosted it in our AKS cluster. This service is part of our transition from a monolithic system to a microservices architecture.
 
-# Getting Started
-TODO: Guide users through getting your code up and running on their own system. In this section you can talk about:
-1.	Installation process
-2.	Software dependencies
-3.	Latest releases
-4.	API references
+# Purpose
+The service establishes subscriptions to various topics or channels within message queuing frameworks we use (Redis, Kafka and potentially other frameworks) using a pub/sub pattern. These subscriptions are made with call-back functions that are designated to trigger upon message
+reception. This service will be the core asynchronous event handling and communication between different components of our system.
 
-# Build and Test
-TODO: Describe and show how to build your code and run the tests. 
+When a message is published to a subscribed topic or channel, the Subscriber intercepts the message and subsequently triggers the
+associated call-back function. This creates real-time response to messages and the execution of necessary actions based on the content of
+those messages.
 
-# Contribute
-TODO: Explain how other users and developers can contribute to make your code better. 
-
-If you want to learn more about creating good readme files then refer the following [guidelines](https://docs.microsoft.com/en-us/azure/devops/repos/git/create-a-readme?view=azure-devops). You can also seek inspiration from the below readme files:
-- [ASP.NET Core](https://github.com/aspnet/Home)
-- [Visual Studio Code](https://github.com/Microsoft/vscode)
-- [Chakra Core](https://github.com/Microsoft/ChakraCore)
+The code makes use of libraries private to Ceridian and therefore cannot be built and ran, but if you want to learn more about how this service is used in our system, in the [refer to this short document here](https://drive.google.com/file/d/1Gu3Ca9vAVlDnlt2hMjFQ8TSaeTFdECVX/view?usp=sharing)!
