@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: engine-subscriber
+  namespace: testops-engine
+  labels:
+    app: engine-subscriber
+spec:
+  selector:
+    matchLabels:
+      app: engine-subscriber
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: engine-subscriber
+    spec:
+      serviceAccountName: engine-subscriber-sa
+      containers:
+        - name: engine-subscriber
+          image: app541deploycr.azurecr.io/tps_subscriber:dev_manual
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: engine-storage-env
+            - configMapRef:
+                name: engine-redis-env
+            - configMapRef:
+                name: engine-grid-env

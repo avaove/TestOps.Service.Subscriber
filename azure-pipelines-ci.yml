@@ -1,0 +1,53 @@
+# Container-DotNet-App application
+
+trigger:
+- main
+- hotfix/*
+
+variables:
+  domainId: archtf
+  containerAppProjectPath: src\TestOps.Service.Subscriber\TestOps.Service.Subscriber.csproj
+  containerRegistryRepository: tadotnet
+  projectName: testops-service-subscriber
+
+name: 1.0.$(Date:yy)$(DayOfYear)$(Rev:.r)
+
+resources:
+  repositories:
+  - repository: templates
+    type: git
+    name: DFDevOps\cicd-templates
+    ref: refs/tags/stable-2
+
+    # http://dev.azure.com/Ceridian/DFDevOps/_git/cicd-templates
+
+jobs:
+- job: Build
+  pool:
+    demands: DotNetFramework
+  workspace:
+    clean: all
+  variables:
+    - name: NUGET.PLUGIN.HANDSHAKE.TIMEOUT.IN.SECONDS
+      value: 20
+    - name: NUGET.PLUGIN.REQUEST.TIMEOUT.IN.SECONDS
+      value: 20
+    - template: ci/variables.yml@templates
+
+  steps:    
+  - template: ci/build-and-test.yml@templates
+    parameters:
+      sonarQubeProjectKey: $(projectName)
+      sonarQubeProjectName: $(projectName)
+      withCoverage: false
+
+  # - template: ci/docker-build-push-all-tags.yml@templates
+    # parameters:
+      # containerRegistryNamespace: $(domainId)
+      # apps:
+      # - projectPath: $(containerAppProjectPath)
+        # containerRegistryRepository: $(containerRegistryRepository)
+
+  # - template: ci/symbols-publish.yml@templates
+
+  - template: ci/sonar-qube-publish.yml@templates

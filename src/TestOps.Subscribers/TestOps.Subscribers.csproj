@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Ceridian.Framework.Core" Version="2.6.4" />
+    <PackageReference Include="KubernetesClient" Version="11.0.21" />
+    <PackageReference Include="TestOps.Data.Shared" Version="30.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.video.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
