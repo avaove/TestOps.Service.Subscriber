@@ -8,4 +8,4 @@ When a message is published to a subscribed topic or channel, the Subscriber int
 associated call-back function. This creates real-time response to messages and the execution of necessary actions based on the content of
 those messages.
 
-The code makes use of libraries private to Ceridian and therefore cannot be built and ran, but if you want to learn more about how this service is used in our system, in the [refer to this short document here](https://drive.google.com/file/d/1Gu3Ca9vAVlDnlt2hMjFQ8TSaeTFdECVX/view?usp=sharing)!
+The code makes use of libraries private to Ceridian and therefore cannot be built and ran, but if you want to learn more about how this service is used in our system, in the [refer to this flowchart here](https://miro.com/app/board/uXjVMxHwDYw=/)!
